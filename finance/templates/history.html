@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    History
+{% endblock %}
+
+{% block main %}
+    <div class="mb-4">
+        <table>
+            <thead>
+                <tr>
+                    <th>Type</th>
+                    <th>Stock</th>
+                    <th>Purchase/Sale Price</th>
+                    <th>Number of Shares</th>
+                    <th>Total Amount</th>
+                    <th>Date & Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for transaction in transactions %}
+                <div class="mb-4">
+                    <tr>
+                        <td>{{transaction["type"]}}</td>
+                        <td>{{transaction["stock"]}}</td>
+                        <td>{{transaction["individual_share_price"] | usd}}</td>
+                        <td>{{transaction["number_of_shares"]}}</td>
+                        <td>{{transaction["total_share_price"] | usd}}</td>
+                        <td>{{transaction["time"]}}</td>
+                    </tr>
+                </div>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

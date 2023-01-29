@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Index
+{% endblock %}
+
+{% block main %}
+    <div class="mb-4">
+        <table>
+            <thead>
+                <tr>
+                    <th>Stock</th>
+                    <th>Number of Shares</th>
+                    <th>Current Price</th>
+                    <th>Total Value of Holding</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for transaction in transactions %}
+                <tr>
+                    <td>{{transaction["stock"]}}</td>
+                    <td>{{transaction["number_of_shares"]}}</td>
+                    <td>{{transaction["individual_share_price"] | usd}}</td>
+                    <td>{{transaction["total_share_price"] | usd}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="mb-4">
+        {% for u in user %}
+            <h1>Cash: {{u["cash"] | usd}}</h1>
+        {% endfor %}
+    </div>
+    <div class="mb-4">
+        {% for u in user %}
+            <h1>Total: {{u["cash"] | usd}}</h1>
+        {% endfor %}
+    </div>
+{% endblock %}
